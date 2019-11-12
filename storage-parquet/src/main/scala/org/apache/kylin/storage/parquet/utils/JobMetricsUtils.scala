@@ -16,7 +16,7 @@
  * limitations under the License.
 */
 
-package org.apache.kylin.storage.parquet.engine.spark.utils
+package org.apache.kylin.storage.parquet.utils
 
 import java.util.concurrent.ConcurrentHashMap
 

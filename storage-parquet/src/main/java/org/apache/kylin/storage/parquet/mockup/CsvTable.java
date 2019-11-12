@@ -14,33 +14,37 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 
-package org.apache.kylin.storage.parquet.utils
+package org.apache.kylin.storage.parquet.mockup;
 
-class JobMetrics {
+import org.apache.kylin.metadata.model.TableDesc;
+import org.apache.kylin.source.IReadableTable;
 
-  private var metrics: Map[String, Long] = Map.empty
+import java.io.IOException;
 
-  def getMetrics(key: String): Long = {
-    metrics.getOrElse(key, -1)
-  }
+public class CsvTable implements IReadableTable {
 
-  def setMetrics(key: String, value: Long): Unit = {
-    metrics += (key -> value)
-  }
+    private String baseDir;
+    private TableDesc tableDesc;
 
-  def isDefinedAt(key: String): Boolean = {
-    metrics.isDefinedAt(key)
-  }
+    public CsvTable(String baseDir, TableDesc tableDesc) {
+        this.baseDir = baseDir;
+        this.tableDesc = tableDesc;
+    }
 
-  override def toString: String = {
-    s"CuboidRowsCnt is ${metrics.getOrElse(Metrics.CUBOID_ROWS_CNT, null)}, " +
-      s"sourceRowsCnt is ${metrics.getOrElse(Metrics.SOURCE_ROWS_CNT, null)}."
-  }
-}
+    @Override
+    public TableReader getReader() throws IOException {
+        return new CsvTableReader(baseDir, tableDesc);
+    }
 
-object Metrics {
-  val CUBOID_ROWS_CNT: String = "cuboidRowsCnt"
-  val SOURCE_ROWS_CNT: String = "sourceRowsCnt"
+    @Override
+    public TableSignature getSignature() throws IOException {
+        return new TableSignature();
+    }
+
+    @Override
+    public boolean exists() throws IOException {
+        return true;
+    }
 }

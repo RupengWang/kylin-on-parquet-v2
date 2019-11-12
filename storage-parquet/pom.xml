@@ -36,6 +36,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.kylin</groupId>
+            <artifactId>kylin-core-metadata</artifactId>
+        </dependency>
         <!-- Spark dependency -->
         <dependency>
             <groupId>org.apache.spark</groupId>

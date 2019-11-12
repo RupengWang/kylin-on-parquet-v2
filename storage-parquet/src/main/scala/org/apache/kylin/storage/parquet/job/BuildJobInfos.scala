@@ -16,7 +16,7 @@
  * limitations under the License.
 */
 
-package org.apache.kylin.storage.parquet.engine.spark.job
+package org.apache.kylin.storage.parquet.job
 
 import java.util
 
