@@ -2479,7 +2479,7 @@ public abstract class KylinConfigBase implements Serializable {
     }
 
     public String getSparkMergeClassName() {
-        return getOptional("kylin.engine.spark.merge-class-name", "org.apache.kylin.engine.spark.job.DFMergeJob");
+        return getOptional("kylin.engine.spark.merge-class-name", "org.apache.kylin.engine.spark.job.CubeMergeJob");
     }
 
     public int getSparkEngineMaxRetryTime() {
